@@ -20,7 +20,7 @@ mal: $(word $(words $(BINS)),$(BINS))
 	cp $< $@
 
 $(BINS): %: %.hs $(OTHER_SRCS)
-	ghc --make $< -o $@
+	stack ghc -- --make $< -o $@
 
 clean:
 	rm -f $(BINS) mal *.hi *.o

@@ -1,3 +1,4 @@
+.stack-work
 .bash_history
 .cache
 .cargo
@@ -64,6 +65,7 @@ groovy/*.class
 groovy/mal.jar
 haskell/*.hi
 haskell/*.o
+haskell-mal/bin
 haxe/*.n
 haxe/*.py
 haxe/cpp/

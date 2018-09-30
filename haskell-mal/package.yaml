@@ -1,0 +1,53 @@
+name:                haskell-mal
+version:             0.1.0.0
+github:              "githubuser/haskell-mal"
+license:             BSD3
+author:              "depctg@gmail.com"
+maintainer:          "example@example.com"
+copyright:           "2018 depctg"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/haskell-mal#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- readline
+- parsec
+
+library:
+  source-dirs: src
+
+executables:
+  step0_repl: &build-option
+    main:                step0_repl.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-mal
+  step1_read_print:
+    main:                step1_read_print.hs
+    <<: *build-option
+
+tests:
+  haskell-mal-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-mal
