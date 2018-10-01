@@ -16,13 +16,13 @@ data SExpression = List [SExpression]
                  | Atom Atom
      deriving ( Show )
 
-identifier :: Parsec SExpression
+identifier :: Parsec String () SExpression
 identifier = Identifier <$> pIdentifier
-           where pIndentifier = (:) <$> letter <*> many (alphaNum <|> char '-')
+           where pIdentifier = (:) <$> letter <*> many (alphaNum <|> char '-')
 
-atom :: Parsec SExpression
+atom :: Parsec String () SExpression
 atom = Atom . Number . read <$> many1 digit
-   <|> Atom . String . read <$> (char '"' *> many anychar <* char '"')
-   <|> Atom . Char . read <$> (char '\'' *> anychar <* char '\'')
+   <|> Atom . String <$> (char '"' *> many (noneOf "\"") <* char '"')
+   <|> Atom . Char <$> (char '\'' *> anyChar <* char '\'')
 
-parseLine = parse atom ""
+parseLine = parse atom "REPL"
