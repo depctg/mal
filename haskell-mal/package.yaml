@@ -23,6 +23,8 @@ dependencies:
 - base >= 4.7 && < 5
 - haskeline
 - parsec
+- containers
+- mtl >= 2.2.2
 
 library:
   source-dirs: src
@@ -39,6 +41,15 @@ executables:
     - haskell-mal
   step1_read_print:
     main:                step1_read_print.hs
+    <<: *build-option
+  step2_eval:
+    main:                step2_eval.hs
+    <<: *build-option
+  step3_env:
+    main:                step3_env.hs
+    <<: *build-option
+  step4_if_fn_do:
+    main:                step4_if_fn_do.hs
     <<: *build-option
 
 tests:

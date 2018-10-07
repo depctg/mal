@@ -1,6 +1,5 @@
 module Main where
 
-import Lib
 import Lisp ( parseLine )
 import Console ( repl )
 
